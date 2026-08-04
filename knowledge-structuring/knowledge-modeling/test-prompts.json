@@ -1,0 +1,55 @@
+{
+  "skill": "knowledge-modeling",
+  "version": "0.1.0",
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "我筛出了5个关于客户异议处理的关键知识点，摆在桌上却串不起来，课程没有主线，怎么办",
+      "expected_behavior": "调用 knowledge-modeling，先用选择地图诊断内容特性（无时间顺序→排除流程式；无运算关系→排除公式式；并列要点→字母式或金字塔式），再构造模型并做目标校验",
+      "notes": "正面场景：工作坊核心卡点——关键点有了串不成模型"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "学员普遍反映我的课像 Q&A，话术太多根本记不住，说没有什么规律可言",
+      "expected_behavior": "调用 knowledge-modeling，参照销售 HAND 法则案例：给散装内容找分类维度并结构化，无效话术自然淘汰",
+      "notes": "正面场景：无结构堆叠导致记忆负担"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "我想把这几年总结的管理方法论包装成像 SMART、GAPS 那样的模型，以后好传播",
+      "expected_behavior": "调用 knowledge-modeling，按四种方式构造模型，强调意义钩子（名称本身承载含义且与主题吻合）",
+      "notes": "正面场景：方法论模型化/版权化"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "我课的内容太多了，十几个点，不知道砍哪些，帮我看看",
+      "expected_behavior": "不应调用本 skill——先做减法，应触发 key-knowledge-filter；给 15 个点建模等于给混乱打包",
+      "notes": "跨 skill 诱饵：应触发同包兄弟 skill key-knowledge-filter"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "我的课设计完了，帮我起个吸引人眼球的课程名字",
+      "expected_behavior": "不应调用本 skill——课程命名应触发 course-title-naming（模型名≠课程名，两套标准）",
+      "notes": "跨 skill 诱饵：应触发同包兄弟 skill course-title-naming"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "我这5个知识点，想用五行学说来包装，金木水火土各对应一个，显得博大精深有文化底蕴",
+      "expected_behavior": "应调用本 skill 但必须立即做目标校验警告（五行修心路反例）：学员理解对应关系需要额外背景吗？形式与课程目标有关吗？——引导回到内容特性选择结构，而非迎合形式感",
+      "notes": "边界：形式感诱惑——本 skill 的头号失败模式"
+    },
+    {
+      "id": "edge-02",
+      "type": "edge_case",
+      "prompt": "帮我把课程大纲做成一张好看的结构图，配色高级一点",
+      "expected_behavior": "不应按本 skill 执行——这是视觉排版需求；结构化改变的是内容组织逻辑而非呈现样式。可区分说明后按普通设计需求处理",
+      "notes": "边界：画成图 ≠ 结构化"
+    }
+  ]
+}

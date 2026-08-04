@@ -1,0 +1,48 @@
+{
+  "skill": "key-knowledge-filter",
+  "version": "0.1.0",
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "我的课有15个知识点，客户只给一天时间，每个都觉得重要，到底砍哪些啊",
+      "expected_behavior": "调用 key-knowledge-filter，先查 MECE 罗列质量，再用重要性/难度/频率三指标单项排序打分×权重，收敛到 ≤6 个",
+      "notes": "正面场景：内容太多需要取舍"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "业务方坚持说这些内容都很重要、全都要讲，我怎么跟他们谈",
+      "expected_behavior": "调用 key-knowledge-filter，用三指标打分表让分歧可讨论（打分表就是和业务方沟通的证据）",
+      "notes": "正面场景：顶住'都要讲'的压力"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "我备了半天的沟通课，把 DISC、倾听、提问、反馈、非暴力沟通全拆得很细，这样够专业了吧",
+      "expected_behavior": "调用 key-knowledge-filter 的颗粒度校准：半天课配大颗粒，'少就是多'——颗粒度与时间错配",
+      "notes": "正面场景：颗粒度误判（越细越好的迷思）"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "我已经选出6个关键知识点了，怎么把它们串成一个让学员好记的模型？",
+      "expected_behavior": "不应调用本 skill——筛选已完成，应触发 knowledge-modeling",
+      "notes": "跨 skill 诱饵：应触发同包兄弟 skill knowledge-modeling"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "MECE 是什么意思？给我解释一下",
+      "expected_behavior": "纯信息查询，不应调用（本 skill 是操作流程不是名词解释）",
+      "notes": "诱饵：术语查询"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "我们要做一个标准作业流程 SOP 的培训，流程是公司定死的不能改，帮我筛选一下关键知识点",
+      "expected_behavior": "应识别'流程类知识点'例外通道：流程不可更改时跳过三指标筛选，直接按流程组织并用八段锦设计教学；不应强行打分",
+      "notes": "边界：书中两个例外通道之一（流程类），不能机械套用筛选"
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "skill": "course-title-naming",
+  "version": "0.1.0",
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "我的《仓库盘点》课内容和结构都设计完了，下周要发招生通知，帮我想起个吸引人的名字",
+      "expected_behavior": "调用 course-title-naming，先判断主题类型（痛点/利益/焦点三选一），按类型生成 3-5 个候选，再用'名实一致+吸引眼球'终检",
+      "notes": "正面场景：课成之后命名"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "我的课叫《沟通技巧培训》，海报发出去没人报名，太普通了，帮我包装一下课名",
+      "expected_behavior": "调用 course-title-naming，先确认课程内容已定型（命名时机检查通过），再用三点式重构课名",
+      "notes": "正面场景：平淡课名升级"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "帮我把这门课的6个知识点做成一个像 GAPS、HAND 那样有含义的模型名称",
+      "expected_behavior": "不应调用本 skill——模型名服务记忆与讲授（意义钩子逻辑），应触发 knowledge-modeling；课程名才用三点式",
+      "notes": "跨 skill 诱饵：应触发同包兄弟 skill knowledge-modeling（模型名 vs 课程名的区分）"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "帮我写一段 50 字的课程简介文案，放在报名链接里",
+      "expected_behavior": "普通文案写作需求，不应调用（本 skill 只管命名三点式，不管简介文案）",
+      "notes": "诱饵：相邻但不属于本 skill 的写作任务"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "我想做一门时间管理的课，内容还没想，先帮我想个酷炫的名字镇住场子",
+      "expected_behavior": "应拒绝立即命名并说明'命名是最后一步'——先起名会被名字绑架内容（减肥课反例）；引导回 plan-course-4-steps 先定目标",
+      "notes": "边界：命名时机未到——本 skill 第 1 步就是判停"
+    },
+    {
+      "id": "edge-02",
+      "type": "edge_case",
+      "prompt": "我们是内部强制参加的合规安全培训，每年都要讲，领导想起个炸裂的名字",
+      "expected_behavior": "应提示边界：强制参加的合规培训，清晰大于吸引——可以帮忙但应降级夸张成分，避免名不副实",
+      "notes": "边界：B 段明确的反场景"
+    }
+  ]
+}

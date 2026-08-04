@@ -1,0 +1,48 @@
+{
+  "skill": "plan-course-4-steps",
+  "version": "0.1.0",
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "我想开发一门给新晋经理的《反馈面谈》课，手里有一堆素材，完全不知道从哪里开始",
+      "expected_behavior": "调用 plan-course-4-steps，先做第 1 步：引导用一句话逻辑写出学习目标（工作行为+成为的角色），而不是先整理素材",
+      "notes": "正面场景：从零开始设计新课"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "老板让我做一个沟通培训，这个主题太大了，感觉能讲的东西特别多，怎么弄",
+      "expected_behavior": "调用 plan-course-4-steps，用'关注关键工作而非全部工作'收敛宽泛主题（澄清需求→找杠杆点）",
+      "notes": "正面场景：宽泛主题收敛"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "我在带工作坊，有个学员抱着十几页素材问我：这些是不是都要讲？怎么组织成一门课？我该怎么引导他",
+      "expected_behavior": "调用 plan-course-4-steps，给出教练式引导路径：先问课程目标，再走四步骤",
+      "notes": "正面场景：工作坊教练带教"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "我课程已经列出15个知识点了，但半天课根本讲不完，帮我看看砍哪些",
+      "expected_behavior": "不应调用本 skill——这是内容取舍问题，应触发 key-knowledge-filter",
+      "notes": "跨 skill 诱饵：应触发同包兄弟 skill key-knowledge-filter"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "帮我把 PPT 第 3 页的切换动画改成淡入",
+      "expected_behavior": "纯文档操作，不应调用任何课程设计 skill",
+      "notes": "诱饵：完全无关场景"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "我的课程内容和结构都定好了，就差一个好名字了，帮我想个吸引人的",
+      "expected_behavior": "不应调用本 skill——虽然命名是四步骤第 4 步，但用户只要命名，应触发 course-title-naming；可顺带提醒'命名是最后一步'此时恰好适用",
+      "notes": "边界：四步骤的子环节单独求助时，路由到对应兄弟 skill"
+    }
+  ]
+}
