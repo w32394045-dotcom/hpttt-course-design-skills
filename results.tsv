@@ -1,0 +1,5 @@
+timestamp	commit	skill	old_score	new_score	status	dimension	note	eval_mode
+2026-08-04T11:14	fa643f3	knowledge-modeling	-	82.9	baseline	-	初始评估: 结构自评 dim1-7/9 + dim8 两次 full_test (with_skill vs baseline)	full_test
+2026-08-04T11:36	b209732	knowledge-modeling	82.9	3-0 better	keep	dim4 检查点	3 judges 一致 better(slight): 显性 🔴/🛑 直击准则4	paired
+2026-08-04T11:52	d41d835	knowledge-modeling	82.9	3-0 better	keep	dim3 fallback	3 judges 一致 better(slight): 三段式 fallback 补齐失败分支; HL-4 连续2轮slight → break	paired
+2026-08-04T11:52	-	knowledge-modeling	-	-	break	-	HL-4 见好就收: 连续2轮 slight, 避免为凑分增冗余	-
