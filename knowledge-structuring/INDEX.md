@@ -1,6 +1,6 @@
 # 《换种教法：高绩效培训师精进之道》第七章 — Skill Index
 
-> 本章由 cangjie-skill 蒸馏, 共产出 **4** 个 skills。
+> 本章经蒸馏流程产出 **4** 个 skills。
 > 处理时间: 2026-08-04
 
 ## 关于这本书
@@ -69,27 +69,36 @@ graph LR
 
 ## 安装使用
 
-本目录是构建产物, 宿主不会从这里加载 skill。要让 agent 真正调用, 把 skill 目录复制到宿主的 skills 目录:
+本目录是构建产物, 宿主不会从这里加载 skill。要让 agent 真正调用, 把 skill 目录复制到**你所用的 skills-compatible runtime** 的 skills 目录:
 
 ```bash
-# WorkBuddy 用户级 (所有项目可用)
-cp -r plan-course-4-steps key-knowledge-filter knowledge-modeling course-title-naming ~/.workbuddy/skills/
+# 用户级: 四个 skill 一次装完（把 <skills-dir> 换成下表里你的 runtime 对应目录）
+cp -r plan-course-4-steps key-knowledge-filter knowledge-modeling course-title-naming <skills-dir>/
 
-# Claude Code 用户级
-cp -r <skill-slug> ~/.claude/skills/
-
-# 或项目级
-cp -r <skill-slug> <project>/.claude/skills/
+# 只装单个
+cp -r <skill-slug> <skills-dir>/
 ```
+
+常见 runtime 的用户级 skills 目录:
+
+| Runtime | 用户级 skills 目录 |
+|---|---|
+| Claude Code | `~/.claude/skills/` |
+| WorkBuddy | `~/.workbuddy/skills/` |
+| 其他 skills-compatible runtime (Codex / Cursor / OpenClaw / Hermes 等) | 见该 runtime 文档; 只要目标目录内含 `SKILL.md`, 即可被加载 |
+
+项目级: 把 `<skill-slug>/` 放进 `<project>/.<runtime>/skills/`（如 `<project>/.claude/skills/`）。
+
+> 装完后 skill 自带全部执行所需内容。仓库根目录的 `GLOSSARY.md` / `verified.md` 是蒸馏审计产物, 仅供追溯, 不是运行依赖——术语定义与验证结论均已内联在对应 `SKILL.md` 中。
 
 ---
 
-## 接入 darwin-skill
+## 接入自动优化流程
 
-所有 skill 均带有 `test-prompts.json` (darwin-skill 兼容格式), 可直接接入自动进化:
+所有 skill 均带有 `test-prompts.json` (标准测试集格式), 可直接接入自动优化流程:
 
 ```
-"用 darwin-skill 优化 knowledge-modeling 这个 skill"
+"优化 knowledge-modeling 这个 skill"
 ```
 
 ---

@@ -1,6 +1,6 @@
 {
   "skill": "key-knowledge-filter",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "test_cases": [
     {
       "id": "should-trigger-01",
@@ -43,6 +43,21 @@
       "prompt": "我们要做一个标准作业流程 SOP 的培训，流程是公司定死的不能改，帮我筛选一下关键知识点",
       "expected_behavior": "应识别'流程类知识点'例外通道：流程不可更改时跳过三指标筛选，直接按流程组织并用八段锦设计教学；不应强行打分",
       "notes": "边界：书中两个例外通道之一（流程类），不能机械套用筛选"
+    },
+    {
+      "id": "output-quality-01",
+      "type": "output_quality",
+      "prompt": "这 12 个知识点，一天课，帮我砍到能讲完。",
+      "expected_behavior": "输出一张完整可审计的打分表（知识点 × 重要性/难度/频率 三列排序分 + 权重 + 总分 + 名次）、被砍清单及理由、以及 ≤6 个关键知识点结果——而不只是说明打分方法",
+      "notes": "新增：测产出质量而非路由"
+    },
+    {
+      "id": "resource-fallback-01",
+      "type": "edge_case",
+      "prompt": "重要性、难度、频率这三个指标的精确定义和边界分别是什么？",
+      "expected_behavior": "就地给出三指标的完整定义与边界（重要性=绩效影响+对其他任务影响；难度=内容间相对难度；频率=时段内执行次数），不得只回「见 GLOSSARY」",
+      "notes": "新增：GLOSSARY.md 位于 skill 目录之外，独立安装后不可达——验证引用断裂已被修复"
     }
-  ]
+  ],
+  "optimized_by": "w32394045-dotcom @ auto-optimize/20260927-1437"
 }

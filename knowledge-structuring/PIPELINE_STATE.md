@@ -1,6 +1,6 @@
 # PIPELINE_STATE — knowledge-structuring
 
-> cangjie-skill 流水线状态文件 (断点续跑用)
+> 蒸馏流程状态文件 (断点续跑用)
 
 - **内容**: 《换种教法：高绩效培训师精进之道》(HPTTT, 王志刚, 电子工业出版社, 2019) 第七章「课程设计四步骤」全文 (~1.2万字)
 - **源文本**: source_text.txt (已从 7z.doc 提取, 替换原节选)
@@ -23,14 +23,14 @@
 - [x] 阶段 2: RIA++ 构造 4 个 skill ✅ (4 个 SKILL.md 完成, 六段齐全, R 段引用均 ≤150字)
 - [x] 阶段 3: Zettelkasten 链接 ✅ (INDEX.md 含 mermaid 引用图 + GLOSSARY.md 18 术语 + 4 个 skill 回填 related_skills/A2 定稿; 共 9 条关系, 符合节制原则)
 - [x] 阶段 4: 压力测试 ✅ (独立 sub-agent 盲测: S1 6/6, S3 7/7, S4 6/6; S2 首轮 5/6→修 description 补"颗粒度求诊"信号→重测 6/6; 全部 100% 通过)
-- [x] darwin-skill 优化 ✅ (范围: 仅 knowledge-modeling; 基线 82.9 triage; R1 dim4 检查点标记 3-0 keep + R2 dim3 fallback表 3-0 keep; HL-4 break; 用户人审通过后合并 main; 成果卡片 result-card.html)
+- [x] 优化迭代 ✅ (范围: 仅 knowledge-modeling; 基线 82.9 triage; R1 dim4 检查点标记 3-0 keep + R2 dim3 fallback表 3-0 keep; HL-4 break; 用户人审通过后合并 main; 成果卡片 result-card.html)
 - [x] 阶段 5: 交付 ✅ (DIGEST.md ~6500字; 4 个 skill 已安装到 ~/.workbuddy/skills/; ~/Desktop/SKILL/ 为 git 版本库)
 
 ## 🎉 流水线全部完成 (2026-08-04)
 
 - 产出: 4 个 skill (已安装可被调用) + INDEX/GLOSSARY/DIGEST/成果卡片 + 完整审计轨迹 (candidates/rejected/verified/test-results/results.tsv)
 - 版本库: ~/Desktop/SKILL/ (git, main 分支, 全部已提交)
-- 后续可选项: 其余 3 个 skill 也可喂给 darwin-skill 进化 (命令: "用 darwin 优化 key-knowledge-filter")
+- 后续可选项: 其余 3 个 skill 也可继续优化迭代 (命令: "优化 key-knowledge-filter")
 
 ## 最终 skill 清单 (阶段 1.5 定案)
 

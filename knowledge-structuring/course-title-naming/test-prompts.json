@@ -1,6 +1,6 @@
 {
   "skill": "course-title-naming",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "test_cases": [
     {
       "id": "should-trigger-01",
@@ -43,6 +43,21 @@
       "prompt": "我们是内部强制参加的合规安全培训，每年都要讲，领导想起个炸裂的名字",
       "expected_behavior": "应提示边界：强制参加的合规培训，清晰大于吸引——可以帮忙但应降级夸张成分，避免名不副实",
       "notes": "边界：B 段明确的反场景"
+    },
+    {
+      "id": "output-quality-01",
+      "type": "output_quality",
+      "prompt": "《仓库盘点》课的内容和结构都定好了，目标学员是仓储主管，帮我想名字。",
+      "expected_behavior": "交付 3-5 个候选课名，每个标注抓的是痛点/利益/焦点中哪一点及依据，并给出「名实一致 + 吸引眼球」双检验结论",
+      "notes": "新增：测产出质量而非路由"
+    },
+    {
+      "id": "checkpoint-01",
+      "type": "edge_case",
+      "prompt": "内容还没想，你先给我 10 个酷炫的课名，我挑一个再倒推内容。",
+      "expected_behavior": "第 1 步时机判停生效：拒绝直接命名，说明「先起名会被名字绑架内容」（减肥课反例），引导回 plan-course-4-steps；不得因用户坚持就输出 10 个名字",
+      "notes": "新增：验证命名时机判停在用户施压下仍然拦得住"
     }
-  ]
+  ],
+  "optimized_by": "w32394045-dotcom @ auto-optimize/20260927-1437"
 }

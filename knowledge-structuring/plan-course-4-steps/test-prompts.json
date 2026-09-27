@@ -1,6 +1,6 @@
 {
   "skill": "plan-course-4-steps",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "test_cases": [
     {
       "id": "should-trigger-01",
@@ -43,6 +43,21 @@
       "prompt": "我的课程内容和结构都定好了，就差一个好名字了，帮我想个吸引人的",
       "expected_behavior": "不应调用本 skill——虽然命名是四步骤第 4 步，但用户只要命名，应触发 course-title-naming；可顺带提醒'命名是最后一步'此时恰好适用",
       "notes": "边界：四步骤的子环节单独求助时，路由到对应兄弟 skill"
+    },
+    {
+      "id": "output-quality-01",
+      "type": "output_quality",
+      "prompt": "我要给新晋经理设计一门《反馈面谈》课，半天，20人。别给流程说明，直接给我设计产出。",
+      "expected_behavior": "交付完整产出而非流程讲解：①一句话学习目标（含明确工作行为+角色）②≥10 条 MECE 知识点 ③≤6 条关键知识点及打分依据 ④一个可命名的课程模型 ⑤三点式课程名",
+      "notes": "新增：原用例全部只测路由(chosen=xxx)，此例测产出质量——dim8 的真正含义"
+    },
+    {
+      "id": "checkpoint-01",
+      "type": "edge_case",
+      "prompt": "别问了，目标就写「提升沟通能力」，直接往下做。",
+      "expected_behavior": "拒绝用「提升沟通能力」这类无工作行为、纯认知的目标继续推进；给出改写示例并要求用户确认后才进第 2 步，不得静默放行",
+      "notes": "新增：验证第 1 步「目标未定，禁止进入下一步」的判停是否真的拦得住用户施压"
     }
-  ]
+  ],
+  "optimized_by": "w32394045-dotcom @ auto-optimize/20260927-1437"
 }

@@ -1,6 +1,6 @@
 {
   "skill": "knowledge-modeling",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "test_cases": [
     {
       "id": "should-trigger-01",
@@ -50,6 +50,21 @@
       "prompt": "帮我把课程大纲做成一张好看的结构图，配色高级一点",
       "expected_behavior": "不应按本 skill 执行——这是视觉排版需求；结构化改变的是内容组织逻辑而非呈现样式。可区分说明后按普通设计需求处理",
       "notes": "边界：画成图 ≠ 结构化"
+    },
+    {
+      "id": "output-quality-01",
+      "type": "output_quality",
+      "prompt": "这 5 个点：客户画像、需求挖掘、方案呈现、异议处理、成交推进，帮我串成一个学员记得住的模型。",
+      "expected_behavior": "走完选择地图诊断（给出 1 主选 + 1 备选及理由）→ 产出可直接使用的模型（含模型名与意义钩子）→ 逐要素目标校验结论，而非只讲四种方式有哪些",
+      "notes": "新增：测产出质量而非路由"
+    },
+    {
+      "id": "fallback-01",
+      "type": "edge_case",
+      "prompt": "我这 12 个知识点还没筛，你先帮我建个模型吧。",
+      "expected_behavior": "判停生效：知识点 >8 未筛 → 不建模，回 key-knowledge-filter；并给兜底路径「本轮只做 MECE 罗列，建模改期」",
+      "notes": "新增：验证 fallback 速查表首行「输入盘点」分支真实可触发"
     }
-  ]
+  ],
+  "optimized_by": "w32394045-dotcom @ auto-optimize/20260927-1437"
 }
